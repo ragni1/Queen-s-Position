@@ -1,0 +1,75 @@
+# Chess board coading 
+# take input of n,(p,q) position of the queen and find possible moves on the chess board
+num = int(input())
+p, q= input().strip().split()
+p, q = [int(p), int(q)]
+
+# To solve this problem- divide the chess board into 4 parts taking queen's current position as reference and 
+#loop through each part from queen's position till the boundaries are met
+total_count = 0
+count = 0
+n = p+q # Add queen's position indexes
+if (n%2!=0) | (n%2 == 0): # when position sum is odd or even
+    i = p
+    while i >= 0:
+        j = q
+        while j >= 0: # Loop through first quarter
+            if(i+j)==n:
+                count += 1
+            elif j==q:
+                count += 1
+            elif i==p:
+                count += 1
+            j = j - 1
+        n = n - 2
+        i = i - 1
+    print ("Ist quarter: Queen total moves are :", (count-1))
+total_count += count - 1
+#Loop through second quarter for both even and odd sum
+n = (p+q) # Add position values
+i = p
+count = 0
+while i >=0:
+    j = q
+    while j < num: # Loop through second quarter without considering vertical boundary as already considered in first quadrant
+        if (i+j)==n:
+            count += 1
+        #elif j==q:
+            #count += 1
+        elif i == p:
+            count += 1
+        j = j + 1
+    i = i - 1
+print("IInd quarter: Queen's total moves are: ", (count - 1) )
+total_count += count - 1
+#Loop through third quarter for both even and odd sum
+n = (p+q) # Add position values
+i = p 
+count = 0
+while i < num:
+    j = q 
+    while j < num: # 
+        if (i+j)==n:
+            count += 1
+        elif j==q:
+            count += 1
+        j = j + 1
+    n = n + 2
+    i = i + 1
+print("IIIrd quarter: Queen's total moves are: ", (count - 1) )
+total_count += count - 1
+#Loop through fourth quarter for both even and odd sum
+n = (p+q) # Add position values
+i = p 
+count = 0
+while i < num:
+    j = q 
+    while j >= 0: # 
+        if (i+j)==n:
+            count += 1
+        j = j - 1
+    i = i + 1
+print("IVth quarter: Queen's total moves are: ", (count - 1) )
+total_count += count - 1
+# print moves 
+print("Possible moves a queen can take from position p,q is: ", total_count)
